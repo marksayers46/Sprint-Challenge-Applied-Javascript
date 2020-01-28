@@ -28,7 +28,7 @@ function Header() {
 
     date.textContent = `MARCH 28, 2019`;
     title.textContent = `Lambda Times`;
-    temp.innerHTML = numbers+'<sup>'+degree+'</sup>';
+    temp.innerHTML = numbers + '<sup>' + degree + '</sup>';
 
     return header;
 }

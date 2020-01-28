@@ -19,7 +19,7 @@
 // Create a card for each of the articles and add the card to the DOM.
 
 let cardData = axios.get('https://lambda-times-backend.herokuapp.com/articles');
-console.log(cardData);
+
 
 function cardMaker(items) {
     let card = document.createElement('div');
@@ -49,22 +49,23 @@ function cardMaker(items) {
 
 let cardsCont = document.querySelector('.cards-container');
 
-cardData.then(result => {
-    result.data.articles.bootstrap.forEach(elem => {
+cardData.then(response => {
+    response.data.articles.bootstrap.forEach(elem => {
         cardsCont.appendChild(cardMaker(elem));
     })
-    result.data.articles.javascript.forEach(elem => {
+    response.data.articles.javascript.forEach(elem => {
         cardsCont.appendChild(cardMaker(elem));
     })
-    result.data.articles.jquery.forEach(elem => {
+    response.data.articles.jquery.forEach(elem => {
         cardsCont.appendChild(cardMaker(elem));
     })
-    result.data.articles.node.forEach(elem => {
+    response.data.articles.node.forEach(elem => {
         cardsCont.appendChild(cardMaker(elem));
     })
-    result.data.articles.technology.forEach(elem => {
+    response.data.articles.technology.forEach(elem => {
         cardsCont.appendChild(cardMaker(elem));
     })
+    console.log(response);
 })
 
 .catch((err) => {

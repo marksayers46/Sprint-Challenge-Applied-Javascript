@@ -20,9 +20,10 @@ function tabMaker(items) {
 }
 
 let topics = document.querySelector('.topics');
-data.then(result => {
-    result.data.topics.forEach(elem => {
+data.then(response => {
+    response.data.topics.forEach(elem => {
         topics.appendChild(tabMaker(elem));
+        console.log(response);
     })    
 })
 .catch((err) => {
