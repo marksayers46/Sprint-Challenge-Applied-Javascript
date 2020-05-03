@@ -17,3 +17,57 @@
 // </div>
 //
 // Create a card for each of the articles and add the card to the DOM.
+
+let cardData = axios.get('https://lambda-times-backend.herokuapp.com/articles');
+
+
+function cardMaker(items) {
+    let card = document.createElement('div');
+    let headline = document.createElement('div');
+    let author = document.createElement('div');
+    let imgCont = document.createElement('div');
+    let img = document.createElement('img');
+    let name = document.createElement('span');
+
+    card.appendChild(headline);
+    card.appendChild(author);
+    author.appendChild(imgCont);
+    imgCont.appendChild(img);
+    author.appendChild(name);
+
+    card.classList.add('card');
+    headline.classList.add('headline');
+    author.classList.add('author');
+    imgCont.classList.add('img-container');
+
+    headline.textContent = items.headline;
+    img.src = items.authorPhoto;
+    name.textContent = items.authorName;
+
+    return card;
+}
+
+let cardsCont = document.querySelector('.cards-container');
+
+cardData.then(response => {
+    response.data.articles.bootstrap.forEach(elem => {
+        cardsCont.appendChild(cardMaker(elem));
+    })
+    response.data.articles.javascript.forEach(elem => {
+        cardsCont.appendChild(cardMaker(elem));
+    })
+    response.data.articles.jquery.forEach(elem => {
+        cardsCont.appendChild(cardMaker(elem));
+    })
+    response.data.articles.node.forEach(elem => {
+        cardsCont.appendChild(cardMaker(elem));
+    })
+    response.data.articles.technology.forEach(elem => {
+        cardsCont.appendChild(cardMaker(elem));
+    })
+    console.log(response);
+})
+
+.catch((err) => {
+    console.log(err);
+})
